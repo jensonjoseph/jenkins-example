@@ -22,20 +22,27 @@ pipeline {
         }
 
         stage ('Compile Stage') {
-
+            when {
+                expression { params.REQUESTED_ACTION == 'deploy' }
+            }
             steps {
                 sh 'mvn clean compile'
             }
         }
 
         stage ('Testing Stage') {
-
+            when {
+                expression { params.REQUESTED_ACTION == 'deploy' }
+            }
             steps {
                 sh 'mvn test'
             }
         }
 
         stage ('Deployment Stage') {
+            when {
+                expression { params.REQUESTED_ACTION == 'deploy' }
+            }
             steps {
                 sh 'mvn deploy'
             }
