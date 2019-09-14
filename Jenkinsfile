@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    parameters {
+        choice(
+            choices: ['deploy' , 'restart'],
+            description: 'Select either deploy or restart',
+            name: 'REQUESTED_ACTION')
+     }
     tools {
         maven 'maven_3_3_9'
     }
@@ -7,7 +13,7 @@ pipeline {
     stages {
         stage ('Restart') {
             when {
-                branch 'master'
+                expression { params.REQUESTED_ACTION == 'restart' }
             }
             steps {
                 sh 'mvn clean compile'
