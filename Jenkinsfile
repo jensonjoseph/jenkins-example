@@ -7,11 +7,12 @@ pipeline {
     stages {
         stage ('Restart') {
             when {
-                steps {
-                    sh 'mvn clean compile'
-                }
-                sh "exit 1"
+                branch 'master'
             }
+            steps {
+                sh 'mvn clean compile'
+            }
+            sh "exit 1"
         }
 
         stage ('Compile Stage') {
