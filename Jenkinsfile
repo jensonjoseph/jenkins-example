@@ -5,16 +5,14 @@ pipeline {
     }
 
     stages {
+        stage ('Restart') {
+            if(true) {
+                steps {
+                    sh 'mvn clean compile'
+                }
+                sh "exit 1"
+            }
 
-        if(true) {
-            stage ('Restart') {
-
-                        steps {
-                            sh 'mvn clean compile'
-                        }
-                        sh "exit 1"
-                    }
-        }
         stage ('Compile Stage') {
 
             steps {
