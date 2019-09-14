@@ -6,7 +6,7 @@ pipeline {
 
     stages {
         stage ('Restart') {
-            if(true) {
+            when {
                 steps {
                     sh 'mvn clean compile'
                 }
