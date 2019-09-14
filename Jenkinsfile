@@ -11,8 +11,8 @@ pipeline {
             }
             steps {
                 sh 'mvn clean compile'
+                sh "exit 1"
             }
-            sh "exit 1"
         }
 
         stage ('Compile Stage') {
