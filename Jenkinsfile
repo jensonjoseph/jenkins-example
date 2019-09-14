@@ -12,6 +12,7 @@ pipeline {
                 }
                 sh "exit 1"
             }
+        }
 
         stage ('Compile Stage') {
 
@@ -26,7 +27,6 @@ pipeline {
                 sh 'mvn test'
             }
         }
-
 
         stage ('Deployment Stage') {
             steps {
